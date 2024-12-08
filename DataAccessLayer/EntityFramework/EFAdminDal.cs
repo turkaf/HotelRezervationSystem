@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-	public class EFCity : GenericRepository<City>, ICity
-	{
-	}
+    public class EFAdminDal : GenericRepository<Admin>, IAdminDal
+    {
+    }
 }

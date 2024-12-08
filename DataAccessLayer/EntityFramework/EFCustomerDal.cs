@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EFBooking : GenericRepository<Booking>, IBooking
-    {
-    }
+	public class EFCustomerDal : GenericRepository<Customer>, ICustomerDal
+	{
+	}
 }
