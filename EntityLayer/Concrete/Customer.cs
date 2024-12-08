@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EntityLayer.Concrete
 {
     public class Customer
     {
-        public int CustomerId { get; private set; } // Primary Key
+        [Key]
+        public int CustomerID { get; private set; } // Primary Key
         public string UserName { get; private set; } // Unique
         public string Password { get; private set; }
         public string Email { get; private set; }
@@ -16,6 +18,6 @@ namespace EntityLayer.Concrete
         public DateTime BirthDate { get; set; }
 
         // Navigation Properties
-        public ICollection<Reservation> Reservations { get; set; } // Customer has many Reservations
+        public virtual List<Booking> Reservations { get; set; } // Customer has many Reservations
     }
 }

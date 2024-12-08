@@ -1,25 +1,27 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EntityLayer.Concrete
 {
-    public class Reservation
+    public class Booking
     {
-        public int BookingId { get; private set; } // Primary Key
-        public int UserId { get; set; } // Foreign Key, Customers table
-        public int RoomId { get; set; } // Foreign Key, Rooms table
+        [Key]
+        public int BookingID { get; private set; } // Primary Key
+        public int CustomerID { get; set; } // Foreign Key, Customers table
+        public int RoomID { get; set; } // Foreign Key, Rooms table
 
         public DateTime ReservationDate { get; private set; }
         public DateTime CheckInDate { get; private set; }
         public DateTime CheckOutDate { get; private set; }
         public DateTime BookingDate { get; private set; }
 
-        public string Status { get; private set; } // Confirmed, Pending, Cancelled
+        public bool Status { get; private set; } // Confirmed, Pending, Cancelled
         public int NumberOfGuests { get; private set; }
         public decimal TotalPrice { get; private set; }
 
 
         // Navigation Properties
-        public virtual Customer Reservation { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual Room Room { get; set; }
     }
 }
