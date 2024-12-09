@@ -2,7 +2,7 @@
 
 namespace HotelRezervationSystem.Controllers
 {
-    public class HomeController : Controller
+    public class RoomsController : Controller
     {
         public IActionResult Index()
         {

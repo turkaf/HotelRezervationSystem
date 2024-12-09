@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Stay - Grand Hotel Chain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #e67e22;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+
+        .location-info {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1534430480872-3498386e7856');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .location-info h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .location-info p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .location-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .booking-container {
+            max-width: 1400px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .search-filters {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-item label {
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .filter-item input,
+        .filter-item select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .hotel-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hotel-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .hotel-content {
+            padding: 20px;
+        }
+
+        .hotel-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .hotel-location {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hotel-features {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--dark-gray);
+        }
+
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .book-now {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .login {
+            background: var(--light-gray);
+            color: var(--dark-gray);
+        }
+
+        .register {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Grand Hotels</div>
+            <div class="nav-links">
+                <a href="main.html">Home</a>
+                <a href="destination.html">Destinations</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="auth-button login">Login</button>
+                <button class="auth-button register">Register</button>
+            </div>
+        </nav>
+    </header>
+    <section class="location-info">
+        <h1>Manhattan, New York</h1>
+        <p>Experience the heart of New York City in Manhattan, where luxury meets convenience. Home to iconic landmarks,
+            world-class shopping, and vibrant culture, Manhattan offers an unforgettable stay for both business and
+            leisure travelers.</p>
+        <div class="location-stats">
+            <div class="stat-item">
+                <div class="stat-number">4.8</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Happy Guests</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="booking-container">
+        <section class="search-filters">
+            <form class="filter-grid">
+                <div class="filter-item">
+                    <label>Check In</label>
+                    <input type="date">
+                </div>
+                <div class="filter-item">
+                    <label>Check Out</label>
+                    <input type="date">
+                </div>
+                <div class="filter-item">
+                    <label>Guests</label>
+                    <select>
+                        <option>1 Adult</option>
+                        <option>2 Adults</option>
+                        <option>2 Adults, 1 Child</option>
+                        <option>2 Adults, 2 Children</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>Room Type</label>
+                    <select>
+                        <option>Any</option>
+                        <option>Standard Room</option>
+                        <option>Deluxe Room</option>
+                        <option>Suite</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <button class="search-button">Search Hotels</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="hotel-grid">
+            <!-- Hotel Card 1 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Luxury Hotel"
+                    class="hotel-image">
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Grand Plaza Hotel</h2>
+                    <div class="hotel-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Downtown Manhattan, New York</span>
+                    </div>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(487 reviews)</span>
+                    </div>
+                    <div class="hotel-features">
+                        <span class="feature"><i class="fas fa-wifi"></i> Free WiFi</span>
+                        <span class="feature"><i class="fas fa-parking"></i> Parking</span>
+                        <span class="feature"><i class="fas fa-swimming-pool"></i> Pool</span>
+                    </div>
+                    <div class="price-section">
+                        <div class="price">$299<small>/night</small></div>
+                        <button class="book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Card 2 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4" alt="Boutique Hotel"
+                    class="hotel-image">
+                <div class="hotel-content">
+                    <h2 class="hotel-name">The Metropolitan</h2>
+                    <div class="hotel-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Central Park, New York</span>
+                    </div>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(312 reviews)</span>
+                    </div>
+                    <div class="hotel-features">
+                        <span class="feature"><i class="fas fa-wifi"></i> Free WiFi</span>
+                        <span class="feature"><i class="fas fa-utensils"></i> Restaurant</span>
+                        <span class="feature"><i class="fas fa-spa"></i> Spa</span>
+                    </div>
+                    <div class="price-section">
+                        <div class="price">$249<small>/night</small></div>
+                        <button class="book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Card 3 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa" alt="Business Hotel"
+                    class="hotel-image">
+                <div class="hotel-content">
+                    <h2 class="hotel-name">Executive Suites</h2>
+                    <div class="hotel-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Financial District, New York</span>
+                    </div>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(245 reviews)</span>
+                    </div>
+                    <div class="hotel-features">
+                        <span class="feature"><i class="fas fa-wifi"></i> Free WiFi</span>
+                        <span class="feature"><i class="fas fa-dumbbell"></i> Gym</span>
+                        <span class="feature"><i class="fas fa-briefcase"></i> Business Center</span>
+                    </div>
+                    <div class="price-section">
+                        <div class="price">$279<small>/night</small></div>
+                        <button class="book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

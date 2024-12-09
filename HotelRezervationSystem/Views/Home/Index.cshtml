@@ -1,8 +1,76 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero">
+    <div class="search-container">
+        <form class="search-form">
+            <input type="text" class="search-input" placeholder="Destination">
+            <input type="date" class="search-input" placeholder="Check-in">
+            <input type="date" class="search-input" placeholder="Check-out">
+            <select class="search-input" name="guests">
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4+">4+ Guests</option>
+            </select>
+            <button type="submit" class="search-button">Search Hotels</button>
+        </form>
+    </div>
+</section>
+
+<section class="featured-hotels">
+    <div class="section-title">
+        <h2>Most Popular Rooms</h2>
+        <p>Discover our guests' favorite destinations</p>
+    </div>
+    <div class="hotels-grid">
+        <div class="hotel-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Luxury Hotel 1" class="hotel-image">
+            <div class="hotel-info">
+                <h3 class="hotel-name">Grand Hotel Paris</h3>
+                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Paris, France</p>
+                <div class="hotel-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="hotel-price">From $299/night</p>
+            </div>
+        </div>
+        <div class="hotel-card">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4" alt="Luxury Hotel 2" class="hotel-image">
+            <div class="hotel-info">
+                <h3 class="hotel-name">Grand Hotel Dubai</h3>
+                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
+                <div class="hotel-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="hotel-price">From $399/night</p>
+            </div>
+        </div>
+        <div class="hotel-card">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9" alt="Luxury Hotel 3" class="hotel-image">
+            <div class="hotel-info">
+                <h3 class="hotel-name">Grand Hotel New York</h3>
+                <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                <div class="hotel-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="hotel-price">From $499/night</p>
+            </div>
+        </div>
+    </div>
+</section>

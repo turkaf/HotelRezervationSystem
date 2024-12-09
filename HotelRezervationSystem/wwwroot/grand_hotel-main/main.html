@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Hotel Chain - Luxury Stays Worldwide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #e67e22;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .search-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .search-input {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        /* Featured Hotels Section */
+        .featured-hotels {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hotel-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .hotel-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .hotel-info {
+            padding: 20px;
+        }
+
+        .hotel-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hotel-location {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .hotel-rating {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .hotel-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Locations Section */
+        .locations {
+            padding: 80px 0;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .location-card {
+            position: relative;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .location-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--white);
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Grand Hotels</div>
+            <div class="nav-links">
+                <a href="main.html">Home</a>
+                <a href="destination.html">Destinations</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="auth-button login">Login</button>
+                <button class="auth-button register">Register</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="search-container">
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Destination">
+                <input type="date" class="search-input" placeholder="Check-in">
+                <input type="date" class="search-input" placeholder="Check-out">
+                <input type="number" class="search-input" placeholder="Guests">
+                <button type="submit" class="search-button">Search Hotels</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="featured-hotels">
+        <div class="section-title">
+            <h2>Most Popular Hotels</h2>
+            <p>Discover our guests' favorite destinations</p>
+        </div>
+        <div class="hotels-grid">
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Luxury Hotel 1" class="hotel-image">
+                <div class="hotel-info">
+                    <h3 class="hotel-name">Grand Hotel Paris</h3>
+                    <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Paris, France</p>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="hotel-price">From $299/night</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4" alt="Luxury Hotel 2" class="hotel-image">
+                <div class="hotel-info">
+                    <h3 class="hotel-name">Grand Hotel Dubai</h3>
+                    <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="hotel-price">From $399/night</p>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9" alt="Luxury Hotel 3" class="hotel-image">
+                <div class="hotel-info">
+                    <h3 class="hotel-name">Grand Hotel New York</h3>
+                    <p class="hotel-location"><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                    <div class="hotel-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="hotel-price">From $499/night</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="locations">
+        <div class="section-title">
+            <h2>Our Locations</h2>
+            <p>Find us in these beautiful destinations</p>
+        </div>
+        <div class="location-grid">
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34" alt="Paris" class="location-image">
+                <div class="location-overlay">
+                    <h3>Paris</h3>
+                    <p>15 Hotels</p>
+                </div>
+            </div>
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Dubai" class="location-image">
+                <div class="location-overlay">
+                    <h3>Dubai</h3>
+                    <p>12 Hotels</p>
+                </div>
+            </div>
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9" alt="New York" class="location-image">
+                <div class="location-overlay">
+                    <h3>New York</h3>
+                    <p>10 Hotels</p>
+                </div>
+            </div>
+            <div class="location-card">
+                <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be" alt="Tokyo" class="location-image">
+                <div class="location-overlay">
+                    <h3>Tokyo</h3>
+                    <p>8 Hotels</p>
+                </div>
+            </div>
+        </div>
+    </section>
+ <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Grand Hotel Chain</h3>
+                <p>Experience luxury and comfort at its finest with our worldwide collection of premium hotels and
+                    resorts. Creating unforgettable memories since 1990.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Our Hotels</a></li>
+                    <li><a href="#">Special Offers</a></li>
+                    <li><a href="#">Dining Experience</a></li>
+                    <li><a href="#">Wellness & Spa</a></li>
+                    <li><a href="#">Events & Meetings</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, City</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@grandhotel.com</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Customer Service</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Grand Hotel Chain. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+

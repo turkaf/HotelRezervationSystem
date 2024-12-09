@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations - Grand Hotel Chain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #e67e22;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .destination-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .destination-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .destination-container {
+            max-width: 1400px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .destination-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .destination-image {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .destination-content {
+            padding: 30px;
+        }
+
+        .destination-name {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .hotel-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .hotel-list li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hotel-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hotel-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hotel-rating {
+            color: var(--secondary-color);
+        }
+
+        .explore-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .explore-button:hover {
+            background: #d35400;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .login {
+            background: var(--light-gray);
+            color: var(--dark-gray);
+        }
+
+        .register {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Grand Hotels</div>
+            <div class="nav-links">
+                <a href="main.html">Home</a>
+                <a href="destination.html">Destinations</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="auth-button login">Login</button>
+                <button class="auth-button register">Register</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="destination-hero">
+        <div class="hero-content">
+            <h1>Our Destinations</h1>
+            <p>Discover luxury accommodations in world's most breathtaking locations</p>
+        </div>
+    </section>
+
+    <div class="destination-container">
+        <div class="destination-grid">
+            <!-- 1 -->
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34" alt="Paris" class="destination-image">
+                <div class="destination-content">
+                    <h2 class="destination-name">Paris, France</h2>
+                    <p>Experience the city of love with our premium hotels</p>
+                    <ul class="hotel-list">
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Grand Hotel Paris Opera
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Champs-Élysées Palace
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                    </ul>
+                    <a href="hotel_info.html" class="explore-button">Explore Hotels</a>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Dubai" class="destination-image">
+                <div class="destination-content">
+                    <h2 class="destination-name">Dubai, UAE</h2>
+                    <p>Luxury redefined in the heart of the desert</p>
+                    <ul class="hotel-list">
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Dubai Marina Grand
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Palm Jumeirah Resort
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Downtown Dubai Palace
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                    </ul>
+                    <a href="hotel_info.html" class="explore-button">Explore Hotels</a>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9" alt="New York" class="destination-image">
+                <div class="destination-content">
+                    <h2 class="destination-name">New York, USA</h2>
+                    <p>Luxury in the city that never sleeps</p>
+                    <ul class="hotel-list">
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Manhattan Grand
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Central Park View
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                    </ul>
+                    <a href="hotel_info.html" class="explore-button">Explore Hotels</a>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be" alt="Tokyo" class="destination-image">
+                <div class="destination-content">
+                    <h2 class="destination-name">Tokyo, Japan</h2>
+                    <p>Where tradition meets modern luxury</p>
+                    <ul class="hotel-list">
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Shibuya Luxury Hotel
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Imperial Grand Tokyo
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hotel-name">
+                                <i class="fas fa-hotel"></i>
+                                Ginza Palace Hotel
+                            </span>
+                            <span class="hotel-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </li>
+                    </ul>
+                    <a href="hotel_info.html" class="explore-button">Explore Hotels</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Grand Hotel Chain</h3>
+                <p>Experience luxury and comfort at its finest with our worldwide collection of premium hotels and
+                    resorts. Creating unforgettable memories since 1990.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Our Hotels</a></li>
+                    <li><a href="#">Special Offers</a></li>
+                    <li><a href="#">Dining Experience</a></li>
+                    <li><a href="#">Wellness & Spa</a></li>
+                    <li><a href="#">Events & Meetings</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, City</li>
+                    <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@grandhotel.com</li>
+                    <li><i class="fas fa-clock"></i> 24/7 Customer Service</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for special offers and updates.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button type="submit" class="newsletter-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Grand Hotel Chain. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+</body>
+</html>
