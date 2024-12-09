@@ -7,8 +7,8 @@ namespace EntityLayer.Concrete
     public class Customer
     {
         [Key]
-        public int CustomerID { get; private set; } // Primary Key
-        public string UserName { get; private set; } // Unique
+        public int CustomerID { get; private set; }
+        public string UserName { get; private set; }
         public string Password { get; private set; }
         public string Email { get; private set; }
         public string Address { get; private set; }
@@ -18,6 +18,6 @@ namespace EntityLayer.Concrete
         public DateTime BirthDate { get; set; }
 
         // Navigation Properties
-        public virtual List<Booking> Reservations { get; set; } // Customer has many Reservations
+        public virtual List<Booking> Bookings { get; set; }
     }
 }

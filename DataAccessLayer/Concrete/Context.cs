@@ -7,7 +7,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            optionsBuilder.UseSqlServer("server=DESKTOP-R127VMJ\\SQLEXPRESS;database=HotelRezervationDB;integrated security=true;TrustServerCertificate=True;");
         }
 
         // DbSet's
@@ -16,5 +16,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<RoomType> RoomTypes { get; set; }
     }
 }

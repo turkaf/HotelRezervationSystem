@@ -6,6 +6,8 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int CityID { get; private set; } // Primary Key
-        public string CityName { get; private set; }   
+        public string CityName { get; private set; }
+        // Navigational Property
+        public virtual List<Room> Rooms { get; set; }
     }
 }
