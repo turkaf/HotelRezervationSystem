@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewData["Title"] = "Rooms";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Rooms</h2>
+</div>
+
+<form class="mt-4" method="get" action="#">
+    <div class="row mb-4">
+        <!-- City Filter -->
+        <div class="col-md-6">
+            <label for="city" class="form-label">Enter City</label>
+            <input type="text" id="city" name="city" class="form-control" placeholder="Enter City Name">
+        </div>
+
+        <!-- Capacity Filter -->
+        <div class="col-md-4">
+            <label for="capacity" class="form-label">Select Capacity</label>
+            <select id="capacity" name="capacity" class="form-select">
+                <option value="">All Capacities</option>
+                <option value="1">1</option>
+                <option value="1">2</option>
+                <option value="3">3</option>
+                <option value="4">4+</option>
+            </select>
+        </div>
+
+        <!-- Filter Button -->
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-info w-100">Filter</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th scope="col">Room Photo</th>
+            <th scope="col">Room Name</th>
+            <th scope="col">Room's City</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Price/Night</th>
+            <th scope="col">Room Rating</th>
+            <th scope="col">Settings</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <td>
+                <img class="rounded" src=".." style="max-height: 100px;" alt="">
+            </td>
+            <td>Room1</td>
+            <td>City1</td>
+            <td>4+</td>
+            <td>Price1</td>
+            <td>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info me-1">Rezervation</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img class="rounded" src=".." style="max-height: 100px;" alt="">
+            </td>
+            <td>Room2</td>
+            <td>City2</td>
+            <td>3</td>
+            <td>Price2</td>
+            <td>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info me-1">Rezervation</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img class="rounded" src=".." style="max-height: 100px;" alt="">
+            </td>
+            <td>Room3</td>
+            <td>City3</td>
+            <td>1</td>
+            <td>Price3</td>
+            <td>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info me-1">Rezervation</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

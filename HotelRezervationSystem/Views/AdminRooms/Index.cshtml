@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "Rooms";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Rooms</h2>
+    <button type="button" class="btn btn-info">Add New Room</button>
+</div>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th scope="col">Room ID</th>
+            <th scope="col">Room Photo</th>
+            <th scope="col">Room Name</th>
+            <th scope="col">Room's City</th>
+            <th scope="col">Price/Night</th>
+            <th scope="col">Room Rating</th>
+            <th scope="col">Settings</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        <tr>
+            <td>1001</td>
+            <td>
+                <img class="rounded" src=".." style="max-height: 100px;" alt="">
+            </td>
+            <td>Room1</td>
+            <td>City1</td>
+            <td>Price1</td>
+            <td>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info me-1">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>1002</td>
+            <td>
+                <img class="rounded" src=".." style="max-height: 100px;" alt="">
+            </td>
+            <td>Room2</td>
+            <td>City2</td>
+            <td>Price2</td>
+            <td>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info me-1">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>1003</td>
+            <td>
+                <img class="rounded" src=".." style="max-height: 100px;" alt="">
+            </td>
+            <td>Room3</td>
+            <td>City3</td>
+            <td>Price3</td>
+            <td>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star text-warning"></i>
+            </td>
+            <td>
+                <button type="button" class="btn btn-info me-1">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

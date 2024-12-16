@@ -1,11 +1,11 @@
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using System.Linq.Expressions;
 
 namespace DataAccessLayer.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
-        // This method deletes the given entity from the database.
         public void Delete(T entity)
         {
             using var context = new Context();
@@ -13,14 +13,24 @@ namespace DataAccessLayer.Repository
             context.SaveChanges();
         }
 
-        // This method retrieves all entities from the database.
+        public T GetByID(int id)
+        {
+            using var context = new Context();
+            return context.Set<T>().Find(id);
+        }
+
         public List<T> GetList()
         {
             using var context = new Context();
             return context.Set<T>().ToList();
         }
 
-        // This method inserts the given entity into the database.
+        public List<T> GetListByFilter(Expression<Func<T, bool>> filter)
+        {
+            using var context = new Context();
+            return context.Set<T>().Where(filter).ToList();
+        }
+
         public void Insert(T entity)
         {
             using var context = new Context();
@@ -28,7 +38,6 @@ namespace DataAccessLayer.Repository
             context.SaveChanges();
         }
 
-        // This method updates the given entity in the database.
         public void Update(T entity)
         {
             using var context = new Context();

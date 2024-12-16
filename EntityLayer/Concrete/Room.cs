@@ -7,7 +7,6 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int RoomID { get; set; }
-        public int CityID { get; set; }
         public int RoomTypeID { get; set; }
         public string Name { get; set; }
         public int Capacity { get; set; }
@@ -21,7 +20,6 @@ namespace EntityLayer.Concrete
         public bool HasMinibar { get; set; }
 
         // Navigation Properties
-        public virtual City City { get; set; }
         public virtual RoomType RoomType { get; set; }
         public virtual List<Booking> Bookings { get; set; }
     }
