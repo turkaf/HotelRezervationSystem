@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Abstract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelRezervationSystem.Controllers
 {
+    [Authorize(Roles = "customer")]
     public class CustomerRoomsController : Controller
     {
         private readonly IRoomService _roomService;

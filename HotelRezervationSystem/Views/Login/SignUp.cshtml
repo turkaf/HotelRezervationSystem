@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="register-container">
+    <div class="register-form">
+        <h3>Register</h3>
+        <form asp-action="SignUp" asp-controller="Login" method="post">
+            <div class="mb-3">
+                <label for="FirstName" class="form-label">Ad</label>
+                <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="First name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="LastName" class="form-label">Soyad</label>
+                <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Last name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Email" class="form-label">E-posta</label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="E-Mail" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Phone" class="form-label">Telefon Numarası</label>
+                <input type="tel" class="form-control" id="Phone" name="Phone" placeholder="Phone number" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Password" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-custom">Register</button>
+            </div>
+
+            <a href="/Login/SignIn" class="login-link">Do you have an account? Login</a>
+        </form>
+    </div>
+</div>

@@ -43,5 +43,10 @@ namespace BusinessLayer.Concrete
         {
             _customerDal.Update(entity);
         }
+
+        public Customer ValidateCustomer(string email, string password)
+        {
+            return _customerDal.GetListByFilter(c => c.Email == email && c.Password == password).FirstOrDefault();
+        }
     }
 }
