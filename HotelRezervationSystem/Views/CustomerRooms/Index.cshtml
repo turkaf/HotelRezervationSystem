@@ -1,11 +1,12 @@
-﻿
+﻿@model List<Room>
+
 @{
     ViewData["Title"] = "Rooms";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center">
-    <h2>Rooms</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-info">Available Rooms</h2>
 </div>
 
 <form class="mt-4" method="get" action="#">
@@ -30,17 +31,18 @@
 
         <!-- Filter Button -->
         <div class="col-md-2 d-flex align-items-end">
-            <button type="submit" class="btn btn-info w-100">Filter</button>
+            <button type="submit" class="btn btn-outline-warning w-100">Filter</button>
         </div>
     </div>
 </form>
 
-<table class="table table-striped mt-4">
-    <thead>
+<!-- Rooms Table -->
+<table class="table table-striped table-bordered table-hover mt-4">
+    <thead class="table-light">
         <tr>
             <th scope="col">Room Photo</th>
             <th scope="col">Room Name</th>
-            <th scope="col">Room's City</th>
+            <th scope="col">City</th>
             <th scope="col">Capacity</th>
             <th scope="col">Price/Night</th>
             <th scope="col">Room Rating</th>
@@ -48,62 +50,43 @@
         </tr>
     </thead>
     <tbody class="table-group-divider">
-        <tr>
-            <td>
-                <img class="rounded" src=".." style="max-height: 100px;" alt="">
-            </td>
-            <td>Room1</td>
-            <td>City1</td>
-            <td>4+</td>
-            <td>Price1</td>
-            <td>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star text-warning"></i>
-            </td>
-            <td>
-                <button type="button" class="btn btn-info me-1">Rezervation</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img class="rounded" src=".." style="max-height: 100px;" alt="">
-            </td>
-            <td>Room2</td>
-            <td>City2</td>
-            <td>3</td>
-            <td>Price2</td>
-            <td>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star text-warning"></i>
-            </td>
-            <td>
-                <button type="button" class="btn btn-info me-1">Rezervation</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <img class="rounded" src=".." style="max-height: 100px;" alt="">
-            </td>
-            <td>Room3</td>
-            <td>City3</td>
-            <td>1</td>
-            <td>Price3</td>
-            <td>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star text-warning"></i>
-            </td>
-            <td>
-                <button type="button" class="btn btn-info me-1">Rezervation</button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="rounded" src="@item.Photo" style="max-height: 100px; object-fit: cover;" alt="@item.Name">
+                </td>
+                <td>@item.Name</td>
+                <td>@item.City</td>
+                <td>
+                    @if (item.Capacity >= 4)
+                    {
+                        @: 4+
+                    }
+                    else
+                    {
+                        @: @item.Capacity
+                    }
+                </td>
+                <td>$@item.PricePerNight/Night</td>
+                <td>
+                    <!-- Room Rating -->
+                    @* <div class="d-flex align-items-center">
+                        @for (var i = 0; i < 5; i++)
+                        {
+                            <i class="bi bi-star-fill @(i < item.Rating ? "text-warning" : "text-muted")"></i>
+                        }
+                    </div> *@
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <i class="bi bi-star text-warning"></i>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-info me-1">Reservation</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

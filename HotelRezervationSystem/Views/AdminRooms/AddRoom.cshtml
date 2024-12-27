@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "AddRoom";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-info">Add New Room</h2>
+</div>
+
+<form class="mt-4 mb-4" action="@Url.Action("AddRoom", "AdminRooms")" method="POST" enctype="multipart/form-data">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <!-- Room Name -->
+        <div class="col-md-6 mb-3">
+            <label for="roomName" class="form-label">Room Name</label>
+            <input type="text" class="form-control" id="roomName" name="Name" required placeholder="Enter Room Name">
+        </div>
+
+        <!-- Room Type -->
+        <div class="col-md-6 mb-3">
+            <label for="roomType" class="form-label">Room Type</label>
+            <select class="form-select" id="roomType" name="RoomTypeID" required>
+                <option value="" disabled selected>Select Room Type</option>
+                @foreach (var roomType in ViewBag.RoomTypes)
+                {
+                    <option value="@roomType.RoomTypeID">@roomType.TypeName</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Capacity -->
+        <div class="col-md-6 mb-3">
+            <label for="capacity" class="form-label">Capacity</label>
+            <input type="number" class="form-control" id="capacity" name="Capacity" required placeholder="Enter Capacity">
+        </div>
+
+        <!-- Room Photo -->
+        <div class="col-md-6 mb-3">
+            <label for="room_photo" class="form-label">Room Photo</label>
+            <input type="file" class="form-control" id="room_photo" name="Photo" accept="image/*">
+            @Html.ValidationMessage("Photo", null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Price per Night -->
+        <div class="col-md-6 mb-3">
+            <label for="pricePerNight" class="form-label">Price per Night ($)</label>
+            <input type="number" class="form-control" id="pricePerNight" name="PricePerNight" required placeholder="Enter Price">
+        </div>
+
+        <!-- City -->
+        <div class="col-md-6 mb-3">
+            <label for="roomCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="roomCity" name="City" required placeholder="Enter City">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="Description" rows="3" required placeholder="Enter Room Description"></textarea>
+    </div>
+
+    <div class="row">
+        <!-- Has Wifi -->
+        <div class="col-md-3 mb-3">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="hasWifi" name="HasWifi" value="true">
+                <label class="form-check-label" for="hasWifi">Has Wi-Fi</label>
+            </div>
+        </div>
+
+        <!-- Has Air Conditioning -->
+        <div class="col-md-3 mb-3">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="hasAirConditioning" name="HasAirConditioning" value="true">
+                <label class="form-check-label" for="hasAirConditioning">Has Air Conditioning</label>
+            </div>
+        </div>
+
+        <!-- Has TV -->
+        <div class="col-md-3 mb-3">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="hasTV" name="HasTV" value="true">
+                <label class="form-check-label" for="hasTV">Has TV</label>
+            </div>
+        </div>
+
+        <!-- Has Minibar -->
+        <div class="col-md-3 mb-3">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="hasMinibar" name="HasMinibar" value="true">
+                <label class="form-check-label" for="hasMinibar">Has Minibar</label>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3 w-100">Add Room</button>
+</form>

@@ -1,6 +1,8 @@
 using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Repository;
 using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,14 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-	public class EFRoomDal : GenericRepository<Room>, IRoomDal
-	{
-	}
+    public class EfRoomDal : GenericRepository<Room>, IRoomDal
+    {
+        public List<Room> GetListRoomWithType()
+        {
+            using (var c = new Context())
+            {
+                return c.Rooms.Include(x => x.RoomType).ToList();
+            }
+        }
+    }
 }

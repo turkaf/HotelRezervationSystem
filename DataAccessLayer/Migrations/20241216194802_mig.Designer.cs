@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241216194802_mig")]
+    partial class mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +64,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CustomerID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Rating")
                         .HasColumnType("int");
 
                     b.Property<int>("RoomID")
@@ -159,7 +159,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<double>("PricePerNight")
                         .HasColumnType("float");
 
-                    b.Property<double?>("Rating")
+                    b.Property<double>("Rating")
                         .HasColumnType("float");
 
                     b.Property<int>("RoomTypeID")

@@ -1,54 +1,54 @@
-﻿
+﻿@model List<Customer>
+
 @{
     ViewData["Title"] = "Customers";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center">
-    <h2>Customers</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-info">Customers</h2>
 </div>
 
-<table class="table table-striped mt-4">
-    <thead>
+<table class="table table-hover table-bordered table-striped">
+    <thead class="table-light">
         <tr>
             <th scope="col">Customer ID</th>
-            <th scope="col">Customer First Name</th>
-            <th scope="col">Customer Last Name</th>
-            <th scope="col">Customer Phone</th>
-            <th scope="col">Customer Mail</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
             <th scope="col">Settings</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
-        <tr>
-            <td>1001</td>
-            <td>Ahmet Faruk</td>
-            <td>Türk</td>
-            <td>05437431400</td>
-            <td>af_trk@hotmail.com</td>
-            <td>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>1001</td>
-            <td>Ahmet Faruk</td>
-            <td>Türk</td>
-            <td>05437431400</td>
-            <td>af_trk@hotmail.com</td>
-            <td>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>1001</td>
-            <td>Ahmet Faruk</td>
-            <td>Türk</td>
-            <td>05437431400</td>
-            <td>af_trk@hotmail.com</td>
-            <td>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CustomerID</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>
+                    <div class="d-flex">
+                        <!-- Delete Button -->
+                        <form action="@Url.Action("DeleteCustomer", "AdminCustomers")" method="post" onsubmit="return confirm('Are you sure you want to delete this customer? This action cannot be undone.');">
+                            <input type="hidden" name="CustomerID" value="@item.CustomerID" />
+                            <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Customer">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<script>
+    // Tooltip başlatma
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+</script>

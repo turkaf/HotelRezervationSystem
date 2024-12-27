@@ -14,6 +14,7 @@ namespace EntityLayer.Concrete
         public DateTime BookingDate { get; set; }
         public bool Status { get; set; }
         public double TotalPrice { get; set; }
+        public int? Rating { get; set; }
         // Navigation Properties
         public virtual Customer Customer { get; set; }
         public virtual Room Room { get; set; }

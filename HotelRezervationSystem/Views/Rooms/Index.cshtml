@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Room>
+
 @{
     ViewData["Title"] = "Rooms";
     Layout = "~/Views/Shared/_UILayout.cshtml";
@@ -212,214 +213,58 @@
     </div>
 
     <div class="rooms-grid">
-        <div class="room-card">
-            <div class="room-image-container">
-                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3" alt="Deluxe Room"
-                    class="room-image">
-                <span class="room-tag">Most Popular</span>
-            </div>
-            <div class="room-details">
-                <h2 class="room-type">Deluxe Room</h2>
-                <p class="room-description">Spacious and elegant room with modern amenities and city views.</p>
-                <div class="room-features">
-                    <div class="feature-item">
-                        <i class="fas fa-bed"></i>
-                        <span>King Size Bed</span>
+        @foreach(var item in Model)
+        {
+            <div class="room-card d-flex flex-column">
+                <div class="room-image-container">
+                    <img src="@item.Photo" alt="@item.Name"
+                         class="room-image">
+                    <span class="room-tag">@item.RoomType.TypeName</span>
+                </div>
+                <div class="room-details d-flex flex-column flex-grow-1">
+                    <h2 class="room-type">@item.Name</h2>
+                    <div class="city-info mb-2">
+                        <span class="badge bg-warning">@item.City</span>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-wifi"></i>
-                        <span>Free Wi-Fi</span>
+                    <p class="room-description flex-grow-1">@item.Description</p>
+                    <div class="room-features">
+                        @if (item.HasWifi)
+                        {
+                            <div class="feature-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Free Wi-Fi</span>
+                            </div>
+                        }
+                        @if (item.HasAirConditioning)
+                        {
+                            <div class="feature-item">
+                                <i class="fas fa-snowflake"></i>
+                                <span>Air Conditioning</span>
+                            </div>
+                        }
+                        @if (item.HasTV)
+                        {
+                            <div class="feature-item">
+                                <i class="fas fa-tv"></i>
+                                <span>Smart TV</span>
+                            </div>
+                        }
+                        @if (item.HasMinibar)
+                        {
+                            <div class="feature-item">
+                                <i class="fas fa-wine-glass-alt"></i>
+                                <span>Minibar</span>
+                            </div>
+                        }
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-tv"></i>
-                        <span>Smart TV</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-bath"></i>
-                        <span>Luxury Bath</span>
+                    <div class="room-price fw-bold mt-3">$@item.PricePerNight/Night</div>
+                    <div class="room-actions mt-auto">
+                        <button class="book-button">Book Now</button>
+                        @* <button class="details-button">Details</button> *@
                     </div>
                 </div>
-                <div class="room-price">$299/night</div>
-                <div class="room-actions">
-                    <button class="book-button">Book Now</button>
-                    <button class="details-button">Details</button>
-                </div>
             </div>
-        </div>
-        <div class="room-card">
-            <div class="room-image-container">
-                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3" alt="Suite"
-                    class="room-image">
-                <span class="room-tag">Luxury</span>
-            </div>
-            <div class="room-details">
-                <h2 class="room-type">Executive Suite</h2>
-                <p class="room-description">Luxurious suite with separate living area and premium amenities.</p>
-                <div class="room-features">
-                    <div class="feature-item">
-                        <i class="fas fa-couch"></i>
-                        <span>Living Room</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-coffee"></i>
-                        <span>Mini Bar</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-concierge-bell"></i>
-                        <span>24/7 Service</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-swimming-pool"></i>
-                        <span>Pool Access</span>
-                    </div>
-                </div>
-                <div class="room-price">$499/night</div>
-                <div class="room-actions">
-                    <button class="book-button">Book Now</button>
-                    <button class="details-button">Details</button>
-                </div>
-            </div>
-        </div>
-        <div class="room-card">
-            <div class="room-image-container">
-                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3" alt="Deluxe Room"
-                    class="room-image">
-                <span class="room-tag">Most Popular</span>
-            </div>
-            <div class="room-details">
-                <h2 class="room-type">Deluxe Room</h2>
-                <p class="room-description">Spacious and elegant room with modern amenities and city views.</p>
-                <div class="room-features">
-                    <div class="feature-item">
-                        <i class="fas fa-bed"></i>
-                        <span>King Size Bed</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-wifi"></i>
-                        <span>Free Wi-Fi</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-tv"></i>
-                        <span>Smart TV</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-bath"></i>
-                        <span>Luxury Bath</span>
-                    </div>
-                </div>
-                <div class="room-price">$299/night</div>
-                <div class="room-actions">
-                    <button class="book-button">Book Now</button>
-                    <button class="details-button">Details</button>
-                </div>
-            </div>
-        </div>
-        <div class="room-card">
-            <div class="room-image-container">
-                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3" alt="Suite"
-                    class="room-image">
-                <span class="room-tag">Luxury</span>
-            </div>
-            <div class="room-details">
-                <h2 class="room-type">Executive Suite</h2>
-                <p class="room-description">Luxurious suite with separate living area and premium amenities.</p>
-                <div class="room-features">
-                    <div class="feature-item">
-                        <i class="fas fa-couch"></i>
-                        <span>Living Room</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-coffee"></i>
-                        <span>Mini Bar</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-concierge-bell"></i>
-                        <span>24/7 Service</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-swimming-pool"></i>
-                        <span>Pool Access</span>
-                    </div>
-                </div>
-                <div class="room-price">$499/night</div>
-                <div class="room-actions">
-                    <button class="book-button">Book Now</button>
-                    <button class="details-button">Details</button>
-                </div>
-            </div>
-        </div>
-        <div class="room-card">
-            <div class="room-image-container">
-                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3" alt="Deluxe Room"
-                    class="room-image">
-                <span class="room-tag">Most Popular</span>
-            </div>
-            <div class="room-details">
-                <h2 class="room-type">Deluxe Room</h2>
-                <p class="room-description">Spacious and elegant room with modern amenities and city views.</p>
-                <div class="room-features">
-                    <div class="feature-item">
-                        <i class="fas fa-bed"></i>
-                        <span>King Size Bed</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-wifi"></i>
-                        <span>Free Wi-Fi</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-tv"></i>
-                        <span>Smart TV</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-bath"></i>
-                        <span>Luxury Bath</span>
-                    </div>
-                </div>
-                <div class="room-price">$299/night</div>
-                <div class="room-actions">
-                    <button class="book-button">Book Now</button>
-                    <button class="details-button">Details</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Suite -->
-        <div class="room-card">
-            <div class="room-image-container">
-                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3" alt="Suite"
-                    class="room-image">
-                <span class="room-tag">Luxury</span>
-            </div>
-            <div class="room-details">
-                <h2 class="room-type">Executive Suite</h2>
-                <p class="room-description">Luxurious suite with separate living area and premium amenities.</p>
-                <div class="room-features">
-                    <div class="feature-item">
-                        <i class="fas fa-couch"></i>
-                        <span>Living Room</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-coffee"></i>
-                        <span>Mini Bar</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-concierge-bell"></i>
-                        <span>24/7 Service</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-swimming-pool"></i>
-                        <span>Pool Access</span>
-                    </div>
-                </div>
-                <div class="room-price">$499/night</div>
-                <div class="room-actions">
-                    <button class="book-button">Book Now</button>
-                    <button class="details-button">Details</button>
-                </div>
-            </div>
-        </div>
-
+        }
     </div>
 </body>
-
 </html>
