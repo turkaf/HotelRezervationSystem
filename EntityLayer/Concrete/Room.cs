@@ -19,6 +19,7 @@ namespace EntityLayer.Concrete
         public bool HasAirConditioning { get; set; } = false;
         public bool HasTV { get; set; } = false;
         public bool HasMinibar { get; set; } = false;
+        public bool Status { get; set; } = true;
 
         // Navigation Properties
         public virtual RoomType RoomType { get; set; }

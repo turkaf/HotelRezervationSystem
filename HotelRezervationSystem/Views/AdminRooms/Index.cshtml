@@ -21,6 +21,7 @@
             <th scope="col">Room's City</th>
             <th scope="col">Price/Night</th>
             <th scope="col">Room Rating</th>
+            <th scope="col">Status</th>
             <th scope="col">Settings</th>
         </tr>
     </thead>
@@ -45,6 +46,16 @@
                     <i class="bi bi-star-fill text-warning"></i>
                     <i class="bi bi-star-fill text-warning"></i>
                     <i class="bi bi-star text-warning"></i>
+                </td>
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <span class="badge text-bg-success">Available</span>
+                    }
+                    else if (item.Status == false)
+                    {
+                        <span class="badge text-bg-danger">Rezerved</span>
+                    }
                 </td>
                 <td>
                     <div class="d-flex">

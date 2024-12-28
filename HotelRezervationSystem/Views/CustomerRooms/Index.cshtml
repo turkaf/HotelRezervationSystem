@@ -52,41 +52,37 @@
     <tbody class="table-group-divider">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <img class="rounded" src="@item.Photo" style="max-height: 100px; object-fit: cover;" alt="@item.Name">
-                </td>
-                <td>@item.Name</td>
-                <td>@item.City</td>
-                <td>
-                    @if (item.Capacity >= 4)
-                    {
-                        @: 4+
-                    }
-                    else
-                    {
-                        @: @item.Capacity
-                    }
-                </td>
-                <td>$@item.PricePerNight/Night</td>
-                <td>
-                    <!-- Room Rating -->
-                    @* <div class="d-flex align-items-center">
-                        @for (var i = 0; i < 5; i++)
+            if(item.Status == true)
+            {
+                <tr>
+                    <td>
+                        <img class="rounded" src="@item.Photo" style="max-height: 100px; object-fit: cover;" alt="@item.Name">
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.City</td>
+                    <td>
+                        @if (item.Capacity >= 4)
                         {
-                            <i class="bi bi-star-fill @(i < item.Rating ? "text-warning" : "text-muted")"></i>
+                            @: 4+
                         }
-                    </div> *@
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star text-warning"></i>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-info me-1">Reservation</button>
-                </td>
-            </tr>
+                        else
+                        {
+                            @: @item.Capacity
+                        }
+                    </td>
+                    <td>$@item.PricePerNight/Night</td>
+                    <td>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star text-warning"></i>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info me-1">Reservation</button>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IBookingService:IGenericService<Booking>
     {
+        public List<Booking> TGetListBookingWithCustomerAndRoom();
     }
 }

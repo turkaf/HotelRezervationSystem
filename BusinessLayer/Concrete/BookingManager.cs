@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             return _bookingDal.GetList();
         }
 
+        public List<Booking> TGetListBookingWithCustomerAndRoom()
+        {
+            return _bookingDal.GetListBookingWithCustomerAndRoom();
+        }
+
         public void TUpdate(Booking t)
         {
             _bookingDal.Update(t);

@@ -12,7 +12,7 @@ namespace EntityLayer.Concrete
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public DateTime BookingDate { get; set; }
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
         public double TotalPrice { get; set; }
         public int? Rating { get; set; }
         // Navigation Properties

@@ -39,38 +39,46 @@
                 <div class="container-fluid">
                     <button class="btn btn-info" id="menu-toggle">☰</button>
                     <span class="navbar-text ms-auto">
-                        Welcome, <b>Dear Ahmet Faruk T.</b>
+                        Welcome, <b>Dear Customer 1</b>
                     </span>
                 </div>
             </nav>
 
             <div class="container mt-4">
-                <h2>Booking Details</h2>
+                <h2 class="fw-bold text-info">Booking Detail</h2>
 
                 <!-- Booking Details Section -->
                 <div class="mt-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-lg border-0">
                         <div class="card-header bg-info text-white">
                             <h5 class="mb-0">Room Details</h5>
                         </div>
                         <div class="card-body">
-                            <p><strong>Room Name:</strong> Room1</p>
-                            <div class="mb-3">
-                                <img src=".." class="img-fluid rounded" style="max-height: 250px;" alt="Room Photo">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><strong>Room Name:</strong> Room1</p>
+                                    <p><strong>City:</strong> City</p>
+                                    <p><strong>Check-in Date:</strong> 05.12.2024</p>
+                                    <p><strong>Checkout Date:</strong> 05.12.2024</p>
+                                    <p><strong>Total Price:</strong> $1650</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <img src="Room1.jpg" class="img-fluid rounded shadow"
+                                            style="max-height: 250px; object-fit: cover;" alt="Room Photo">
+                                    </div>
+                                </div>
                             </div>
-                            <p><strong>City:</strong> City</p>
-                            <p><strong>Check-in Date:</strong> 05.12.2024</p>
-                            <p><strong>Checkout Date:</strong> 05.12.2024</p>
-                            <p><strong>Total Price:</strong> $1650</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Back Button -->
                 <div class="mt-4">
-                    <a href="bookings.html" class="btn btn-secondary">Back to Bookings</a>
+                    <a href="bookings.html" class="btn btn-outline-secondary px-4 py-2">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Back to Bookings
+                    </a>
                 </div>
-
             </div>
         </div>
 

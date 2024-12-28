@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<BookingListViewModel>
+
+@{
     ViewData["Title"] = "Bookings";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
@@ -15,42 +17,62 @@
             <th scope="col">Check-in Date</th>
             <th scope="col">Check-out Date</th>
             <th scope="col">Total Price</th>
+            <th scope="col">Status</th>
             <th scope="col">Settings</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
-        <tr>
-            <td>Room 101</td>
-            <td>New York</td>
-            <td>05.12.2024</td>
-            <td>10.12.2024</td>
-            <td>$1650</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View</button>
-                <button type="button" class="btn btn-outline-danger">Cancel</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Room 102</td>
-            <td>Los Angeles</td>
-            <td>10.12.2024</td>
-            <td>15.12.2024</td>
-            <td>$2000</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View</button>
-                <button type="button" class="btn btn-outline-danger">Cancel</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Room 103</td>
-            <td>Miami</td>
-            <td>20.12.2024</td>
-            <td>25.12.2024</td>
-            <td>$1800</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View</button>
-                <button type="button" class="btn btn-outline-danger">Cancel</button>
-            </td>
-        </tr>
+        @foreach(var booking in Model)
+        {
+            <tr>
+                <td>@booking.RoomName</td>
+                <td>@booking.City</td>
+                <td>@booking.CheckInDate</td>
+                <td>@booking.CheckOutDate</td>
+                <td>$@booking.TotalPrice</td>
+                <td>
+                    @if (booking.Status == true)
+                    {
+                        <span class="badge text-bg-success">Active</span>
+                    }
+                    else if (booking.Status == false)
+                    {
+                        <span class="badge text-bg-danger">Passive</span>
+                    }
+                </td>
+                <td>
+                    @* <a href="@Url.Action("BookingDetail", "CustomerBookings", new { bookingId = booking.ID })" class="btn btn-outline-primary me-1">View</a>
+                    <button type="button" class="btn btn-outline-danger">Cancel</button>
+
+                    <form asp-action="CancelBooking" method="post">
+                        <input type="hidden" name="bookingId" value="@booking.ID" />
+                        <button type="submit" class="btn btn-outline-danger"
+                        @if (booking.Status != true)
+                        {
+                            @:disabled
+                        }
+                                title="Cancel">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                    </form> *@
+
+                    <div class="d-flex">
+                        <a href="@Url.Action("BookingDetail", "CustomerBookings", new { bookingId = booking.ID })" class="btn btn-outline-primary me-2">View</a>
+
+                        <form asp-action="CancelBooking" method="post">
+                            <input type="hidden" name="bookingId" value="@booking.ID" />
+                            <button type="submit" class="btn btn-outline-danger"
+                            @if (booking.Status != true)
+                            {
+                                @:disabled
+                            }
+                                    title="Cancel">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

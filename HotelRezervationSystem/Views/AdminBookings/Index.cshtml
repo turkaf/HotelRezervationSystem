@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Booking>
+
+@{
     ViewData["Title"] = "Bookings";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -17,58 +19,54 @@
             <th scope="col">Checkin Date</th>
             <th scope="col">Checkout Date</th>
             <th scope="col">Total Price</th>
+            <th scope="col">Status</th>
             <th scope="col">Settings</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
-        <tr>
-            <td>1001</td>
-            <td>Customer1</td>
-            <td>Room1</td>
-            <td>City1</td>
-            <td>05.12.2024</td>
-            <td>05.12.2024</td>
-            <td>
-                $ 1650
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Booking">
-                    <i class="bi bi-x-circle-fill"></i> Cancel
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>1002</td>
-            <td>Customer2</td>
-            <td>Room2</td>
-            <td>City2</td>
-            <td>06.12.2024</td>
-            <td>07.12.2024</td>
-            <td>
-                $ 1200
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Booking">
-                    <i class="bi bi-x-circle-fill"></i> Cancel
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>1003</td>
-            <td>Customer3</td>
-            <td>Room3</td>
-            <td>City3</td>
-            <td>07.12.2024</td>
-            <td>08.12.2024</td>
-            <td>
-                $ 1800
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Booking">
-                    <i class="bi bi-x-circle-fill"></i> Cancel
-                </button>
-            </td>
-        </tr>
+        @foreach(var booking in Model)
+        {
+            var today = DateTime.Now.Date;
+            var checkoutDate = booking.CheckOutDate.Date;
+            <tr>
+                <td>@booking.BookingID</td>
+                <td>@booking.Customer.FirstName @booking.Customer.LastName</td>
+                <td>@booking.Room.Name</td>
+                <td>@booking.Room.City</td>
+                <td>@booking.CheckInDate.Date.ToString("dd.MM.yyyy")</td>
+                <td>@booking.CheckOutDate.Date.ToString("dd.MM.yyyy")</td>
+                <td>
+                    $@booking.TotalPrice
+                </td>
+                <td>
+                    @if (booking.Status == true)
+                    {
+                        <span class="badge text-bg-success">Active</span>
+                    }
+                    else if (booking.Status == false)
+                    {
+                        <span class="badge text-bg-danger">Passive</span>
+                    }
+                </td>
+                <td>
+                    @* <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel Booking">
+                        <i class="bi bi-x-circle-fill"></i> Cancel
+                    </button> *@
+
+                    <form action="/AdminBookings/CancelBooking" method="post" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                        <input type="hidden" name="bookingId" value="@booking.BookingID" />
+                        <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top"
+                        @if (booking.Status == false || checkoutDate < today)
+                        {
+                            @:disabled
+                        }
+                                title="Cancel Booking">
+                            <i class="bi bi-x-circle-fill"></i> Cancel
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
