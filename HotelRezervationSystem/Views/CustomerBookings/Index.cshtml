@@ -41,20 +41,6 @@
                     }
                 </td>
                 <td>
-                    @* <a href="@Url.Action("BookingDetail", "CustomerBookings", new { bookingId = booking.ID })" class="btn btn-outline-primary me-1">View</a>
-                    <button type="button" class="btn btn-outline-danger">Cancel</button>
-
-                    <form asp-action="CancelBooking" method="post">
-                        <input type="hidden" name="bookingId" value="@booking.ID" />
-                        <button type="submit" class="btn btn-outline-danger"
-                        @if (booking.Status != true)
-                        {
-                            @:disabled
-                        }
-                                title="Cancel">
-                            <i class="bi bi-x-circle"></i> Cancel
-                        </button>
-                    </form> *@
 
                     <div class="d-flex">
                         <a href="@Url.Action("BookingDetail", "CustomerBookings", new { bookingId = booking.ID })" class="btn btn-outline-primary me-2">View</a>

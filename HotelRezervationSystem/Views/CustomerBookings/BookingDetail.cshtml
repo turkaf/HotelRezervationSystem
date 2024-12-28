@@ -30,6 +30,19 @@
                             <span class="badge text-bg-danger">Passive</span>
                         }
                     </p>
+                    
+                    <!-- Rating Section -->
+                    <p><strong>Rating:</strong></p>
+                    <div class="stars" id="stars" data-current-rating="@Model.Rating">
+                        <span class="star" data-value="1">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="5">&#9733;</span>
+                    </div>
+                    <p id="rating-value">Current Rating: @Model.Rating</p>
+
+                    <button class="btn btn-primary" id="submit-rating" disabled>Submit Rating</button>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
@@ -48,3 +61,74 @@
         <i class="bi bi-arrow-left-circle me-2"></i> Back to Bookings
     </a>
 </div>
+
+<!-- JavaScript for Star Rating -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookingId = urlParams.get('bookingId');
+
+        if (!bookingId) {
+            alert("Booking ID is missing in the URL!");
+            return;
+        }
+
+        const stars = document.querySelectorAll(".star");
+        const submitButton = document.getElementById("submit-rating");
+        const ratingValueDisplay = document.getElementById("rating-value");
+
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                selectedRating = parseInt(star.getAttribute("data-value"));
+                updateStars();
+                ratingValueDisplay.textContent = "Selected Rating: " + selectedRating;
+                submitButton.disabled = false;
+            });
+        });
+
+        function updateStars() {
+            stars.forEach(star => {
+                const value = parseInt(star.getAttribute("data-value"));
+                if (value <= selectedRating) {
+                    star.classList.add("text-warning");
+                } else {
+                    star.classList.remove("text-warning");
+                }
+            });
+        }
+
+        submitButton.addEventListener("click", function () {
+            const data = {
+                bookingId: bookingId,
+                rating: selectedRating
+            };
+
+            if (!data.rating) {
+                alert("Please select a rating.");
+                return;
+            }
+
+            fetch(`/CustomerBookings/SubmitRating`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Rating submitted successfully!");
+                        location.reload();
+                    } else {
+                        alert("Failed to submit rating.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error submitting rating:", error);
+                });
+        });
+    });
+</script>

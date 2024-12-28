@@ -39,57 +39,72 @@
                 <div class="container-fluid">
                     <button class="btn btn-info" id="menu-toggle">☰</button>
                     <span class="navbar-text ms-auto">
-                        Welcome, <b>Dear Ahmet Faruk T.</b>
+                        Welcome, <b>Dear Customer 1</b>
                     </span>
                 </div>
             </nav>
 
             <div class="container mt-4 mb-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2>Make Reservation</h2>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-bold text-info">Make Reservation</h2>
                 </div>
 
                 <!-- Reservation Form -->
                 <form class="mt-4" action="/submit-reservation" method="post">
-                    <div class="mb-3">
-                        <label for="roomName" class="form-label">Room Name</label>
-                        <input type="text" class="form-control" id="roomName" name="roomName" value="Room1" disabled>
-                    </div>
+                    <div class="card shadow-sm border-0 p-4">
+                        <div class="card-body">
+                            <!-- Room Name -->
+                            <div class="mb-3">
+                                <label for="roomName" class="form-label">Room Name</label>
+                                <input type="text" class="form-control" id="roomName" name="roomName" value="Room1"
+                                    disabled>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="city" class="form-label">City</label>
-                        <input type="text" class="form-control" id="city" name="city" value="City1" disabled>
-                    </div>
+                            <!-- City -->
+                            <div class="mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="city" value="City1" disabled>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="checkIn" class="form-label">Check-in Date</label>
-                        <input type="date" class="form-control" id="checkIn" name="checkIn" required>
-                    </div>
+                            <!-- Check-in Date -->
+                            <div class="mb-3">
+                                <label for="checkIn" class="form-label">Check-in Date</label>
+                                <input type="date" class="form-control" id="checkIn" name="checkIn" required>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="checkOut" class="form-label">Check-out Date</label>
-                        <input type="date" class="form-control" id="checkOut" name="checkOut" required>
-                    </div>
+                            <!-- Check-out Date -->
+                            <div class="mb-3">
+                                <label for="checkOut" class="form-label">Check-out Date</label>
+                                <input type="date" class="form-control" id="checkOut" name="checkOut" required>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="capacity" class="form-label">Capacity</label>
-                        <input type="text" class="form-control" id="capacity" name="capacity" value="4+" disabled>
-                    </div>
+                            <!-- Capacity -->
+                            <div class="mb-3">
+                                <label for="capacity" class="form-label">Capacity</label>
+                                <input type="text" class="form-control" id="capacity" name="capacity" value="4+"
+                                    disabled>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price per Night</label>
-                        <input type="text" class="form-control" id="price" name="price" value="100 USD" disabled>
-                    </div>
+                            <!-- Price per Night -->
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price per Night</label>
+                                <input type="text" class="form-control" id="price" name="price" value="100 USD"
+                                    disabled>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="totalPrice" class="form-label">Total Price</label>
-                        <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="0 USD" disabled>
-                    </div>
+                            <!-- Total Price -->
+                            <div class="mb-3">
+                                <label for="totalPrice" class="form-label">Total Price</label>
+                                <input type="text" class="form-control" id="totalPrice" name="totalPrice" value="0 USD"
+                                    disabled>
+                            </div>
 
-                    <button type="submit" class="btn btn-info">Reserve Now</button>
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-success w-100 py-2">Reserve Now</button>
+                        </div>
+                    </div>
                 </form>
             </div>
-
         </div>
 
     </div>

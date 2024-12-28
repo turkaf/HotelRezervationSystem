@@ -93,5 +93,64 @@ namespace HotelRezervationSystem.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult EditRoom(int id)
+        {
+            var room = _roomService.TGetByID(id);
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            var roomTypes = _roomTypeService.TGetList();
+            ViewBag.RoomTypes = roomTypes;
+
+            return View(room);
+        }
+
+        [HttpPost]
+        public IActionResult EditRoom(int id, Room room, IFormFile Photo)
+        {
+            if (!ModelState.IsValid)
+            {
+                var roomTypes = _roomTypeService.TGetList();
+                ViewBag.RoomTypes = roomTypes;
+                return View(room);
+            }
+
+            var existingRoom = _roomService.TGetByID(id);
+            if (existingRoom == null)
+            {
+                return NotFound();
+            }
+
+            if (Photo != null && Photo.Length > 0)
+            {
+                var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "roomimages");
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Photo.FileName);
+                var filePath = Path.Combine(directoryPath, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    Photo.CopyTo(stream);
+                }
+
+                room.Photo = "/roomimages/" + uniqueFileName;
+            }
+            else
+            {
+                room.Photo = existingRoom.Photo;
+            }
+
+            _roomService.TUpdate(room);
+
+            return RedirectToAction("Index");
+        }
     }
 }

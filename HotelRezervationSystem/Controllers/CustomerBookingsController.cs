@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using EntityLayer.Concrete;
 using HotelRezervationSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -79,6 +80,62 @@ namespace HotelRezervationSystem.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult CreateBooking(int roomId, double pricePerNight, DateTime checkIn, DateTime checkOut)
+        {
+            var customerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == "CustomerID")?.Value);
+
+            var room = _roomService.TGetByID(roomId);
+            if (room == null)
+            {
+                return RedirectToAction("Index", "CustomerRooms");
+            }
+
+            var days = (checkOut - checkIn).Days + 1;
+
+            var totalPrice = pricePerNight * days;
+
+            var booking = new Booking
+            {
+                CustomerID = customerId,
+                RoomID = roomId,
+                CheckInDate = checkIn,
+                CheckOutDate = checkOut,
+                BookingDate = DateTime.Now,
+                TotalPrice = totalPrice,
+                Status = true
+            };
+
+            _bookingService.TAdd(booking);
+
+            room.Status = false;
+            _roomService.TUpdate(room);
+
+            return RedirectToAction("Index", "CustomerBookings");
+        }
+
+        [HttpPost]
+        public IActionResult SubmitRating([FromBody] SubmitRatingRequest model)
+        {
+            var booking = _bookingService.TGetByID(model.BookingId);
+            if (booking == null)
+            {
+                return Json(new { success = false, message = "Booking not found." });
+            }
+
+            booking.Rating = model.Rating;
+
+            _bookingService.TUpdate(booking);
+
+            return Json(new { success = true });
+        }
+
+        public class SubmitRatingRequest
+        {
+            public int BookingId { get; set; }
+            public int Rating { get; set; }
         }
     }
 }

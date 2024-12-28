@@ -215,55 +215,58 @@
     <div class="rooms-grid">
         @foreach(var item in Model)
         {
-            <div class="room-card d-flex flex-column">
-                <div class="room-image-container">
-                    <img src="@item.Photo" alt="@item.Name"
-                         class="room-image">
-                    <span class="room-tag">@item.RoomType.TypeName</span>
+            if(item.Status == true)
+            {
+                <div class="room-card d-flex flex-column">
+                    <div class="room-image-container">
+                        <img src="@item.Photo" alt="@item.Name"
+                             class="room-image">
+                        <span class="room-tag">@item.RoomType.TypeName</span>
+                    </div>
+                    <div class="room-details d-flex flex-column flex-grow-1">
+                        <h2 class="room-type">@item.Name</h2>
+                        <div class="city-info mb-2">
+                            <span class="badge bg-warning">@item.City</span>
+                        </div>
+                        <p class="room-description flex-grow-1">@item.Description</p>
+                        <div class="room-features">
+                            @if (item.HasWifi)
+                            {
+                                <div class="feature-item">
+                                    <i class="fas fa-wifi"></i>
+                                    <span>Free Wi-Fi</span>
+                                </div>
+                            }
+                            @if (item.HasAirConditioning)
+                            {
+                                <div class="feature-item">
+                                    <i class="fas fa-snowflake"></i>
+                                    <span>Air Conditioning</span>
+                                </div>
+                            }
+                            @if (item.HasTV)
+                            {
+                                <div class="feature-item">
+                                    <i class="fas fa-tv"></i>
+                                    <span>Smart TV</span>
+                                </div>
+                            }
+                            @if (item.HasMinibar)
+                            {
+                                <div class="feature-item">
+                                    <i class="fas fa-wine-glass-alt"></i>
+                                    <span>Minibar</span>
+                                </div>
+                            }
+                        </div>
+                        <div class="room-price fw-bold mt-3">$@item.PricePerNight/Night</div>
+                        <div class="room-actions mt-auto">
+                            <button type="button" class="book-button" onclick="window.location.href='@Url.Action("MakeRezervation", "CustomerRooms", new { roomId = item.RoomID, roomName = item.Name, city = item.City, pricePerNight = item.PricePerNight, capacity = item.Capacity })'">Book Now</button>
+                            @* <button class="details-button">Details</button> *@
+                        </div>
+                    </div>
                 </div>
-                <div class="room-details d-flex flex-column flex-grow-1">
-                    <h2 class="room-type">@item.Name</h2>
-                    <div class="city-info mb-2">
-                        <span class="badge bg-warning">@item.City</span>
-                    </div>
-                    <p class="room-description flex-grow-1">@item.Description</p>
-                    <div class="room-features">
-                        @if (item.HasWifi)
-                        {
-                            <div class="feature-item">
-                                <i class="fas fa-wifi"></i>
-                                <span>Free Wi-Fi</span>
-                            </div>
-                        }
-                        @if (item.HasAirConditioning)
-                        {
-                            <div class="feature-item">
-                                <i class="fas fa-snowflake"></i>
-                                <span>Air Conditioning</span>
-                            </div>
-                        }
-                        @if (item.HasTV)
-                        {
-                            <div class="feature-item">
-                                <i class="fas fa-tv"></i>
-                                <span>Smart TV</span>
-                            </div>
-                        }
-                        @if (item.HasMinibar)
-                        {
-                            <div class="feature-item">
-                                <i class="fas fa-wine-glass-alt"></i>
-                                <span>Minibar</span>
-                            </div>
-                        }
-                    </div>
-                    <div class="room-price fw-bold mt-3">$@item.PricePerNight/Night</div>
-                    <div class="room-actions mt-auto">
-                        <button class="book-button">Book Now</button>
-                        @* <button class="details-button">Details</button> *@
-                    </div>
-                </div>
-            </div>
+            }
         }
     </div>
 </body>

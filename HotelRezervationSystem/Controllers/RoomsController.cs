@@ -12,11 +12,29 @@ namespace HotelRezervationSystem.Controllers
             _roomService = roomService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string destination, string guests)
         {
             var values = _roomService.TGetListRoomWithType();
 
-            return View(values);
+			if (!string.IsNullOrEmpty(destination))
+			{
+				values = values.Where(x => x.City.Contains(destination, StringComparison.OrdinalIgnoreCase)).ToList();
+			}
+
+			if (!string.IsNullOrEmpty(guests))
+			{
+				if (guests == "4+")
+				{
+					values = values.Where(x => x.Capacity >= 4).ToList();
+				}
+				else
+				{
+					int guestCount = int.Parse(guests);
+					values = values.Where(x => x.Capacity >= guestCount).ToList();
+				}
+			}
+
+			return View(values);
         }
     }
 }

@@ -6,10 +6,8 @@
 
 <section class="hero">
 	<div class="search-container">
-		<form class="search-form">
-			<input type="text" class="search-input" placeholder="Destination">
-			<input type="date" class="search-input" placeholder="Check-in">
-			<input type="date" class="search-input" placeholder="Check-out">
+		<form class="search-form" method="get" action="@Url.Action("Index", "Rooms")">
+			<input type="text" class="search-input" placeholder="Destination" name="destination">
 			<select class="search-input" name="guests">
 				<option value="1">1 Guest</option>
 				<option value="2">2 Guests</option>
