@@ -63,25 +63,6 @@
                     <td>@item.Capacity</td>
                     <td>$@item.PricePerNight/Night</td>
                     <td>
-                        @* <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star text-warning"></i> *@
-
-                        @* @if (item.Rating.HasValue)
-                        {
-                            var fullStars = (int)item.Rating.Value;
-                            var emptyStars = 5 - fullStars;
-                            for (int i = 0; i < fullStars; i++)
-                            {
-                                <i class="bi bi-star-fill text-warning"></i>
-                            }
-                            for (int i = 0; i < emptyStars; i++)
-                            {
-                                <i class="bi bi-star text-warning"></i>
-                            }
-                        } *@
                         @if (item.Rating.HasValue)
                         {
                             var rating = item.Rating.Value;

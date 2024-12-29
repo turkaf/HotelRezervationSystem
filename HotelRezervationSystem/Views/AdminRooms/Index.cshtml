@@ -37,15 +37,35 @@
                 <td>@item.City</td>
                 <td>$@item.PricePerNight/Night</td>
                 <td>
-                    @* @for (int i = 0; i < 5; i++)
+                    @if (item.Rating.HasValue)
                     {
-                        <i class="bi bi-star-fill @((i < item.Rating) ? "text-warning" : "text-muted")"></i>
-                    } *@
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star-fill text-warning"></i>
-                    <i class="bi bi-star text-warning"></i>
+                        var rating = item.Rating.Value;
+                        var fullStars = (int)rating;
+                        var hasHalfStar = (rating % 1 >= 0.25 && rating % 1 < 0.75);
+                        var emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+                        for (int i = 0; i < fullStars; i++)
+                        {
+                            <i class="bi bi-star-fill text-warning"></i>
+                        }
+
+                        if (hasHalfStar)
+                        {
+                            <i class="bi bi-star-half text-warning"></i>
+                        }
+
+                        for (int i = 0; i < emptyStars; i++)
+                        {
+                            <i class="bi bi-star text-warning"></i>
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            <i class="bi bi-star text-warning"></i>
+                        }
+                    }
                 </td>
                 <td>
                     @if (item.Status == true)

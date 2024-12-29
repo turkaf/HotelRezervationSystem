@@ -259,6 +259,39 @@
                                 </div>
                             }
                         </div>
+
+                        <div class="room-rating mb-2">
+                            @if (item.Rating.HasValue)
+                            {
+                                var rating = item.Rating.Value;
+                                var fullStars = (int)rating;
+                                var hasHalfStar = (rating % 1 >= 0.25 && rating % 1 < 0.75);
+                                var emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+                                for (int i = 0; i < fullStars; i++)
+                                {
+                                    <i class="fas fa-star text-warning"></i>
+                                }
+
+                                if (hasHalfStar)
+                                {
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                }
+
+                                for (int i = 0; i < emptyStars; i++)
+                                {
+                                    <i class="fas fa-star text-muted"></i>
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    <i class="fas fa-star text-muted"></i>
+                                }
+                            }
+                        </div>
+
                         <div class="room-price fw-bold mt-3">$@item.PricePerNight/Night</div>
                         <div class="room-actions mt-auto">
                             <button type="button" class="book-button" onclick="window.location.href='@Url.Action("MakeRezervation", "CustomerRooms", new { roomId = item.RoomID, roomName = item.Name, city = item.City, pricePerNight = item.PricePerNight, capacity = item.Capacity })'">Book Now</button>
