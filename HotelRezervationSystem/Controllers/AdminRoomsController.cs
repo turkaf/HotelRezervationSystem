@@ -112,10 +112,21 @@ namespace HotelRezervationSystem.Controllers
         [HttpPost]
         public IActionResult EditRoom(int id, Room room, IFormFile Photo)
         {
+            Console.WriteLine($"Received ID: {id}");
+
             if (!ModelState.IsValid)
             {
                 var roomTypes = _roomTypeService.TGetList();
                 ViewBag.RoomTypes = roomTypes;
+
+                foreach (var error in ModelState)
+                {
+                    foreach (var item in error.Value.Errors)
+                    {
+                        Console.WriteLine($"Error in {error.Key}: {item.ErrorMessage}");
+                    }
+                }
+
                 return View(room);
             }
 
